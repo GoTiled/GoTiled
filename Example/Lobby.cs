@@ -1,9 +1,7 @@
 using Godot;
 
-public class Test : Node
+public class Lobby : Control
 {
     public override void _Ready()
-    {
-
-    }
+    { }
 }
