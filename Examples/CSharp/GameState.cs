@@ -193,11 +193,11 @@ namespace GoTiled.Example
 
         public override void _Ready()
         {
-            GetTree().Connect("NetworkPeerConnected", this, "NetworkPeerConnected");
-            GetTree().Connect("NetworkPeerDisconnected", this, "NetworkPeerDisconnected");
-            GetTree().Connect("ConnectedToServer", this, "ConnectedToServer");
-            GetTree().Connect("ConnectionFailed", this, "ConnectionFailed");
-            GetTree().Connect("ServerDisconnected", this, "ServerDisconnected");
+            GetTree().Connect("network_peer_connected", this, "PlayerConnected");
+            GetTree().Connect("network_peer_disconnected", this, "PlayerDisconnected");
+            GetTree().Connect("connected_to_server", this, "ConnectedOK");
+            GetTree().Connect("connection_failed", this, "ConnectedFail");
+            GetTree().Connect("server_disconnected", this, "ServerDisconnected");
         }
     }
 }
