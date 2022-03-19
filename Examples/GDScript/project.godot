@@ -10,7 +10,10 @@ config_version=4
 
 [application]
 
-config/name="Example"
+config/name="Multiplayer Bomber"
+config/description="A multiplayer implementation of the classical bomberman game.
+One of the players should press 'host', while the other
+should type in his address and press 'play'."
 run/main_scene="res://lobby.tscn"
 config/icon="res://icon.png"
 
@@ -80,7 +83,3 @@ set_bomb={
 , Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
-
-[logging]
-
-file_logging/enable_file_logging=true
