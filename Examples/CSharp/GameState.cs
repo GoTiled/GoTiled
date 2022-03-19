@@ -134,7 +134,7 @@ namespace GoTiled.Example
             }
         }
 
-        private void HostGame(string newPlayerName)
+        public void HostGame(string newPlayerName)
         {
             _playerName = newPlayerName;
             _peer = new NetworkedMultiplayerENet();
@@ -142,7 +142,7 @@ namespace GoTiled.Example
             GetTree().NetworkPeer = _peer;
         }
 
-        private void JoinGame(string ip, string newPlayerName)
+        public void JoinGame(string ip, string newPlayerName)
         {
             _playerName = newPlayerName;
             _peer = new NetworkedMultiplayerENet();
@@ -150,17 +150,17 @@ namespace GoTiled.Example
             GetTree().NetworkPeer = _peer;
         }
 
-        private List<string> GetPlayerList()
+        public IReadOnlyList<string> GetPlayerList()
         {
             return _players.Values.ToList();
         }
 
-        private string GetPlayerName()
+        public string GetPlayerName()
         {
             return _playerName;
         }
 
-        private void BeginGame()
+        public void BeginGame()
         {
             var spawnPoints = new Dictionary<int, int>
             {
