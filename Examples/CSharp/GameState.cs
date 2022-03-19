@@ -11,16 +11,22 @@ namespace GoTiled.Example
 
         private NetworkedMultiplayerENet _peer = null;
 
+        [Signal] public delegate void PlayerListChanged();
+        [Signal] public delegate void ConnectionFailed();
+        [Signal] public delegate void ConnectionSucceeded();
+        [Signal] public delegate void GameEnded();
+        [Signal] public delegate void GameError(string error);
+
         private string _playerName = "The Warrior";
         private readonly Dictionary<int, string> _players = new Dictionary<int, string>();
         private readonly List<int> _playersReady = new List<int>();
 
-        private void PlayerConnected(int id)
+        public void PlayerConnected(int id)
         {
             RpcId(id, "RegisterPlayer", _playerName);
         }
 
-        private void PlayerDisconnected(int id)
+        public void PlayerDisconnected(int id)
         {
             if (HasNode("/root/World"))
             {
@@ -36,18 +42,18 @@ namespace GoTiled.Example
             }
         }
 
-        private void ConnectedOk()
+        public void ConnectedOk()
         {
             EmitSignal("ConnectionSucceeded");
         }
 
-        private void ServerDisconnected()
+        public void ServerDisconnected()
         {
             EmitSignal("GameError", "Server disconnected");
             EndGame();
         }
 
-        private void ConnectedFail()
+        public void ConnectedFail()
         {
             GetTree().NetworkPeer = null;
             EmitSignal("ConnectionFailed");

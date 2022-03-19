@@ -10,20 +10,20 @@ namespace GoTiled.Example
         {
             var gameState = GetNode<GameState>("GameState");
 
-            gameState.Connect("connection_failed", this, "OnConnectionFailed");
-            gameState.Connect("connection_succeeded", this, "OnConnectionSuccess");
-            gameState.Connect("player_list_changed", this, "RefreshLobby");
-            gameState.Connect("game_ended", this, "OnGameEnded");
-            gameState.Connect("game_error", this, "OnGameError");
+            gameState.Connect("ConnectionFailed", this, "OnConnectionFailed");
+            gameState.Connect("ConnectionSucceeded", this, "OnConnectionSuccess");
+            gameState.Connect("PlayerListChanged", this, "RefreshLobby");
+            gameState.Connect("GameEnded", this, "OnGameEnded");
+            gameState.Connect("GameError", this, "OnGameError");
 
             var username = System.Environment.GetEnvironmentVariable("USERNAME") ?? "NoName";
 
-            GetNode<Label>("Connect/Name").Text = username;
+            GetNode<LineEdit>("Connect/Name").Text = username;
         }
 
         public void OnHostPressed()
         {
-            if (GetNode<Label>("Connect/Name").Text == "")
+            if (GetNode<LineEdit>("Connect/Name").Text == "")
             {
                 GetNode<Label>("Connect/ErrorLabel").Text = "Invalid name!";
                 return;
@@ -33,14 +33,14 @@ namespace GoTiled.Example
             GetNode<Control>("Players").Show();
             GetNode<Label>("Connect/ErrorLabel").Text = "";
 
-            var playerName = GetNode<Label>("Connect/Name").Text;
+            var playerName = GetNode<LineEdit>("Connect/Name").Text;
             GetNode<GameState>("GameState").HostGame(playerName);
             RefreshLobby();
         }
 
         public void OnJoinPressed()
         {
-            if (GetNode<Label>("Connect/Name").Text == "")
+            if (GetNode<LineEdit>("Connect/Name").Text == "")
             {
                 GetNode<Label>("Connect/ErrorLabel").Text = "Invalid name!";
                 return;
@@ -58,7 +58,7 @@ namespace GoTiled.Example
             GetNode<Button>("Connect/Host").Disabled = true;
             GetNode<Button>("Connect/Join").Disabled = true;
 
-            var playerName = GetNode<Label>("Connect/Name").Text;
+            var playerName = GetNode<LineEdit>("Connect/Name").Text;
             GetNode<GameState>("GameState").JoinGame(ip, playerName);
         }
 
