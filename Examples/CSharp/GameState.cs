@@ -73,7 +73,7 @@ namespace GoTiled.Example
             var world = ResourceLoader.Load<PackedScene>("res://world.tscn").Instance();
             GetTree().Root.AddChild(world);
 
-            GetTree().Root.GetNode("Lobby").SetProcess(false);
+            GetTree().Root.GetNode<Control>("Lobby").Hide();
 
             var playerScene = ResourceLoader.Load<PackedScene>("res://player.tscn");
 
@@ -95,7 +95,7 @@ namespace GoTiled.Example
                     player.SetPlayerName(_players[pid]);
                 }
 
-                world.GetNode("Players").AddChild(player);
+                world.GetNode<Control>("Players").AddChild(player);
             }
 
             //	# Set up score.
