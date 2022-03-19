@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace Example
+namespace GoTiled.Example
 {
     public class Player : KinematicBody2D
     {

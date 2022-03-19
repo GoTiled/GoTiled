@@ -1,7 +1,10 @@
 using Godot;
 
-public class Lobby : Control
+namespace GoTiled.Example
 {
-    public override void _Ready()
-    { }
+    public class Lobby : Control
+    {
+        public override void _Ready()
+        { }
+    }
 }
