@@ -46,7 +46,7 @@ namespace GoTiled.Example
                 return;
             }
 
-            var ip = GetNode<Label>("Connect/IPAddress").Text;
+            var ip = GetNode<LineEdit>("Connect/IPAddress").Text;
             if (IPAddress.TryParse(ip, out var _) == false)
             {
                 GetNode<Label>("Connect/ErrorLabel").Text = "Invalid IP address!";

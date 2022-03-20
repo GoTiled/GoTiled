@@ -42,7 +42,7 @@ namespace GoTiled.Example
             }
         }
 
-        public void ConnectedOk()
+        public void ConnectedOK()
         {
             EmitSignal("ConnectionSucceeded");
         }
