@@ -9,10 +9,10 @@ namespace GoTiled.Example
         [Puppet] public Vector2 PuppetPosition = Vector2.Zero;
         [Puppet] public Vector2 PuppetMotion = Vector2.Zero;
 
-        [Export] private bool _stunned = false;
+        [Export] public bool Stunned = false;
 
         [RemoteSync]
-        private void SetupBomb(string name, Vector2 position, string owner)
+        private void SetupBomb(string name, Vector2 position, int owner)
         {
             var bomb = ResourceLoader.Load<PackedScene>("res://bomb.tscn").Instance<Bomb>();
             bomb.Name = name;
@@ -51,7 +51,7 @@ namespace GoTiled.Example
 
                 var bombing = Input.IsActionPressed("Fire");
 
-                if (_stunned)
+                if (Stunned)
                 {
                     bombing = false;
                     motion = Vector2.Zero;
@@ -93,7 +93,7 @@ namespace GoTiled.Example
                 newAnimation = "WalkRight";
             }
 
-            if (_stunned)
+            if (Stunned)
             {
                 newAnimation = "Stunned";
             }
@@ -115,13 +115,13 @@ namespace GoTiled.Example
         [Puppet]
         public void Stun()
         {
-            _stunned = true;
+            Stunned = true;
         }
 
         [Master]
         public void Exploded(string owner)
         {
-            if (_stunned) return;
+            if (Stunned) return;
 
             Rpc("Stun");
             Stun();
@@ -135,7 +135,7 @@ namespace GoTiled.Example
         public override void _Ready()
         {
             PuppetPosition = Position;
-            _stunned = false;
+            Stunned = false;
         }
     }
 }

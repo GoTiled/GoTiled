@@ -104,16 +104,20 @@ namespace GoTiled.Example
                 world.GetNode<Node2D>("Players").AddChild(player);
             }
 
-            //	# Set up score.
-            //	world.get_node("Score").add_player(get_tree().get_network_unique_id(), player_name)
-            //	for pn in players:
-            //		world.get_node("Score").add_player(pn, players[pn])
-            //
-            //	if not get_tree().is_network_server():
-            //		# Tell server we are ready to start.
-            //		rpc_id(1, "ready_to_start", get_tree().get_network_unique_id())
-            //	elif players.size() == 0:
-            //		post_start_game()
+            world.GetNode<Score>("Score").AddPlayer(GetTree().GetNetworkUniqueId(), _playerName);
+            foreach (var player in _players.Keys)
+            {
+                world.GetNode<Score>("Score").AddPlayer(player, _players[player]);
+            }
+
+            if (!GetTree().IsNetworkServer())
+            {
+                RpcId(1, "ReadyToStart", GetTree().GetNetworkUniqueId());
+            }
+            else if (_players.Count == 0)
+            {
+                PostStartGame();
+            }
         }
 
         [Remote]

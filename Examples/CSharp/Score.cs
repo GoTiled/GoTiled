@@ -37,7 +37,7 @@ namespace GoTiled.Example
             player.Label.Text = $"{player.Name}\n{player.Score}";
         }
 
-        private void AddPlayer(int id, string newPlayerName)
+        public void AddPlayer(int id, string newPlayerName)
         {
             var label = new Label();
             label.Align = Label.AlignEnum.Center;

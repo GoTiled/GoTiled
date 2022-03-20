@@ -5,12 +5,12 @@ namespace GoTiled.Example
 {
     public class Bomb : Area2D
     {
-        public string FromPlayer { get; set; }
+        public int FromPlayer { get; set; }
         private List<Node> InArea = new List<Node>();
 
         private void Explode()
         {
-            if (IsNetworkMaster()) return;
+            if (!IsNetworkMaster()) return;
 
             foreach (var node in InArea)
             {

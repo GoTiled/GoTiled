@@ -7,7 +7,7 @@
 extents = Vector2( 24, 24 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "explode"
+resource_name = "Explode"
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -47,4 +47,4 @@ region_rect = Rect2( 96, 0, 48, 48 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/explode = SubResource( 2 )
+anims/Explode = SubResource( 2 )

@@ -278,9 +278,6 @@ margin_bottom = 40.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Winner" type="Label" parent="."]
 margin_right = 1031.0
