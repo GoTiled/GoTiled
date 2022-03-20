@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://player.gd" type="Script" id=1]
+[ext_resource path="res://Player.cs" type="Script" id=1]
 [ext_resource path="res://charwalk.png" type="Texture" id=2]
 [ext_resource path="res://montserrat.otf" type="DynamicFontData" id=3]
 
@@ -8,7 +8,7 @@
 radius = 20.0
 
 [sub_resource type="Animation" id=2]
-resource_name = "standing"
+resource_name = "Idle"
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -25,7 +25,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "stunned"
+resource_name = "Stunned"
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:frame")
@@ -52,7 +52,7 @@ tracks/1/keys = {
 "values": [ 0.0, 720.0, 0.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:stunned")
+tracks/2/path = NodePath(".:Stunned")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -148,13 +148,13 @@ vframes = 4
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="anim" type="AnimationPlayer" parent="."]
-anims/standing = SubResource( 2 )
-anims/stunned = SubResource( 3 )
-anims/walk_down = SubResource( 4 )
-anims/walk_left = SubResource( 5 )
-anims/walk_right = SubResource( 6 )
-anims/walk_up = SubResource( 7 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 2 )
+anims/Stunned = SubResource( 3 )
+anims/WalkDown = SubResource( 4 )
+anims/WalkLeft = SubResource( 5 )
+anims/WalkRight = SubResource( 6 )
+anims/WalkUp = SubResource( 7 )
 
 [node name="label" type="Label" parent="."]
 margin_left = -82.0

@@ -101,7 +101,7 @@ namespace GoTiled.Example
                     player.SetPlayerName(_players[pid]);
                 }
 
-                world.GetNode<Control>("Players").AddChild(player);
+                world.GetNode<Node2D>("Players").AddChild(player);
             }
 
             //	# Set up score.

@@ -17,7 +17,7 @@ namespace GoTiled.Example
             var bomb = ResourceLoader.Load<PackedScene>("res://bomb.tscn").Instance<Bomb>();
             bomb.Name = name;
             bomb.Position = position;
-            bomb.Owner = owner;
+            bomb.FromPlayer = owner;
 
             GetNode("../..").AddChild(bomb);
         }
@@ -75,7 +75,7 @@ namespace GoTiled.Example
                 motion = PuppetMotion;
             }
 
-            var newAnimation = "standing";
+            var newAnimation = "Idle";
             if (motion.y < 0)
             {
                 newAnimation = "WalkUp";
@@ -95,13 +95,13 @@ namespace GoTiled.Example
 
             if (_stunned)
             {
-                newAnimation = "stunned";
+                newAnimation = "Stunned";
             }
 
             if (newAnimation != _currentAnimation)
             {
                 _currentAnimation = newAnimation;
-                GetNode<AnimationPlayer>("anim").Play(_currentAnimation);
+                GetNode<AnimationPlayer>("AnimationPlayer").Play(_currentAnimation);
             }
 
             MoveAndSlide(motion * MOTION_SPEED);

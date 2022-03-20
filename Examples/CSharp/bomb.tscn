@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://bomb.gd" type="Script" id=1]
+[ext_resource path="res://Bomb.cs" type="Script" id=1]
 [ext_resource path="res://brickfloor.png" type="Texture" id=2]
 [ext_resource path="res://explosion.png" type="Texture" id=3]
 
@@ -54,10 +54,10 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "explode"
+"method": "Explode"
 }, {
 "args": [  ],
-"method": "done"
+"method": "Done"
 } ]
 }
 tracks/2/type = "value"
@@ -120,5 +120,5 @@ texture = ExtResource( 3 )
 autoplay = "anim"
 anims/anim = SubResource( 6 )
 
-[connection signal="body_entered" from="." to="." method="_on_bomb_body_enter"]
-[connection signal="body_exited" from="." to="." method="_on_bomb_body_exit"]
+[connection signal="body_entered" from="." to="." method="OnBombBodyEnter"]
+[connection signal="body_exited" from="." to="." method="OnBombBodyExit"]
