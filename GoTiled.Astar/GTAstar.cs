@@ -1,6 +1,6 @@
 ﻿namespace GoTiled.Astar;
 
-public class GTAstar
+public static class GTAstar
 {
 
 }

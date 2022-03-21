@@ -1,4 +1,5 @@
 ﻿using GoTiled.Core;
+using GoTiled.Utils.Collections.Array;
 
 namespace GoTiled.Astar;
 
@@ -13,20 +14,11 @@ public class GTPathMap
     {
         _nodes = new List<GTTile>[walkable.GetLength(0), walkable.GetLength(1)];
 
-        bool GetWalkable(bool[,] walkable, int x, int y)
-        {
-            if (0 <= x && x < walkable.GetLength(0) && 0 <= y && y < walkable.GetLength(1))
-            {
-                return walkable[x, y];
-            }
-            return false;
-        }
-
         for (var x = 0; x < walkable.GetLength(0); x++)
         {
             for (var y = 0; y < walkable.GetLength(1); y++)
             {
-                if (!GetWalkable(walkable, x, y))
+                if (!walkable[x, y])
                     continue;
 
                 var connections = new List<GTTile>();
@@ -35,41 +27,41 @@ public class GTPathMap
                 // Diagonal
                 if (diagonal)
                 {
-                    if (GetWalkable(walkable, x - 1, y - 1))
+                    if (walkable.GetValueOrDefault(x - 1, y - 1, false))
                     {
                         connections.Add(new GTTile(x - 1, y - 1));
                     }
 
-                    if (GetWalkable(walkable, x + 1, y - 1))
+                    if (walkable.GetValueOrDefault(x + 1, y - 1, false))
                     {
                         connections.Add(new GTTile(x + 1, y - 1));
                     }
 
-                    if (GetWalkable(walkable, x - 1, y + 1))
+                    if (walkable.GetValueOrDefault(x - 1, y + 1, false))
                     {
                         connections.Add(new GTTile(x - 1, y + 1));
                     }
 
-                    if (GetWalkable(walkable, x + 1, y + 1))
+                    if (walkable.GetValueOrDefault(x + 1, y + 1, false))
                     {
                         connections.Add(new GTTile(x + 1, y + 1));
                     }
                 }
 
                 // Straight
-                if (GetWalkable(walkable, x, y - 1))
+                if (walkable.GetValueOrDefault(x, y - 1, false))
                 {
                     connections.Add(new GTTile(x, y - 1));
                 }
-                if (GetWalkable(walkable, x - 1, y))
+                if (walkable.GetValueOrDefault(x - 1, y, false))
                 {
                     connections.Add(new GTTile(x - 1, y));
                 }
-                if (GetWalkable(walkable, x + 1, y))
+                if (walkable.GetValueOrDefault(x + 1, y, false))
                 {
                     connections.Add(new GTTile(x + 1, y));
                 }
-                if (GetWalkable(walkable, x, y + 1))
+                if (walkable.GetValueOrDefault(x, y + 1, false))
                 {
                     connections.Add(new GTTile(x, y + 1));
                 }
@@ -80,15 +72,25 @@ public class GTPathMap
     public int SizeX => _nodes.GetLength(0);
     public int SizeY => _nodes.GetLength(1);
 
-    public IReadOnlyList<GTTile> Get(GTTile tile)
+    public IReadOnlyList<GTTile> GetConnections(GTTile tile)
     {
         return _nodes[tile.X, tile.Y];
     }
 
-    public IReadOnlyList<GTTile> Get(int x, int y)
+    public IReadOnlyList<GTTile> GetConnections(int x, int y)
     {
         return _nodes[x, y];
     }
 
     public IReadOnlyList<GTTile> this[int x, int y] => _nodes[x, y];
+
+    public void AddConnection(GTTile origin, GTTile destination)
+    {
+        _nodes[origin.X, origin.Y].Add(destination);
+    }
+
+    public bool RemoveConnection(GTTile origin, GTTile destination)
+    {
+        return _nodes[origin.X, origin.Y].Remove(destination);
+    }
 }
