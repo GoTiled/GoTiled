@@ -398,6 +398,14 @@ FodyWeavers.xsd
 *.sln.iml
 
 
+# dotnet
+tools
+
+
+# cake
+.artifacts/
+
+
 # GoDot
 
 # Godot-specific ignores
