@@ -37,5 +37,5 @@ jobs:
           DOTNET_CLI_TELEMETRY_OPTOUT: true
       run: |
         dotnet tool restore
-        VERSION=$(dotnet minver --tag-prefix=v --verbosity=error -d=preview)
+        VERSION=$(dotnet minver --verbosity=error -d=preview)
         dotnet cake --target="Publish" --buildversion="$VERSION"
