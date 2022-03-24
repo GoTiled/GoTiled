@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoTiled.Map", "GoTiled.Map\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoTiled.Core", "GoTiled.Core\GoTiled.Core.csproj", "{F0B41FDD-FA87-4337-9726-D1CC57B530AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoTiled.Utils", "GoTiled.Utils\GoTiled.Utils.csproj", "{B49C8457-3ED1-4D8C-9789-A2C952E0F1BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoTiled.Utils", "GoTiled.Utils\GoTiled.Utils.csproj", "{B49C8457-3ED1-4D8C-9789-A2C952E0F1BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoTiled.Astar.Tests", "GoTiled.Astar.Tests\GoTiled.Astar.Tests.csproj", "{BB88E475-C5F5-42A8-981D-71F67C2A3690}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B49C8457-3ED1-4D8C-9789-A2C952E0F1BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B49C8457-3ED1-4D8C-9789-A2C952E0F1BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B49C8457-3ED1-4D8C-9789-A2C952E0F1BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB88E475-C5F5-42A8-981D-71F67C2A3690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB88E475-C5F5-42A8-981D-71F67C2A3690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB88E475-C5F5-42A8-981D-71F67C2A3690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB88E475-C5F5-42A8-981D-71F67C2A3690}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

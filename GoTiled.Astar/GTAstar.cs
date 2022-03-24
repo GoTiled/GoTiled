@@ -55,7 +55,7 @@ public static class GTAstar
                     continue;
                 }
 
-                queue.Enqueue(new Node(current, adj), 0);
+                queue.Enqueue(new Node(current, adj), Heuristic(adj, destination));
                 visited.Add(adj);
             }
         }
