@@ -26,8 +26,8 @@ jobs:
     
     - name: Sonar Begin
       run: dotnet sonarscanner begin \
-        /o:gotiled \
         /key:GoTiled_GoTiled \
+        /o:gotiled \
         /d:sonar.host.url=https://sonarcloud.io \
         /d:sonar.login=${{ secrets.SONAR_TOKEN }} \
         /d:sonar.sources=./Src/
