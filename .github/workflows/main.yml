@@ -26,11 +26,11 @@ jobs:
     
     - name: Sonar Begin
       run: dotnet sonarscanner begin \
-        /key:GoTiled_GoTiled \
         /o:gotiled \
+        /key:GoTiled_GoTiled \
         /d:sonar.host.url=https://sonarcloud.io \
         /d:sonar.login=${{ secrets.SONAR_TOKEN }} \
-        /d:sonar.sources=./Src/
+        /d:sonar.sources=./Src/ \
         /d:sonar.tests=./Tests/
     - name: Build
       run: dotnet build --no-restore
