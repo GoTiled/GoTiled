@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoTiled.Astar", "GoTiled.Astar\GoTiled.Astar.csproj", "{DF9E7A56-2974-4144-BDF3-B25427E147B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoTiled.Astar", "Src/GoTiled.Astar\GoTiled.Astar.csproj", "{DF9E7A56-2974-4144-BDF3-B25427E147B8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoTiled.Map", "GoTiled.Map\GoTiled.Map.csproj", "{F501FAEE-8F97-4523-B209-2D67DA3B7CF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoTiled.Map", "Src/GoTiled.Map\GoTiled.Map.csproj", "{F501FAEE-8F97-4523-B209-2D67DA3B7CF6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoTiled.Core", "GoTiled.Core\GoTiled.Core.csproj", "{F0B41FDD-FA87-4337-9726-D1CC57B530AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoTiled.Core", "Src/GoTiled.Core\GoTiled.Core.csproj", "{F0B41FDD-FA87-4337-9726-D1CC57B530AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoTiled.Utils", "GoTiled.Utils\GoTiled.Utils.csproj", "{B49C8457-3ED1-4D8C-9789-A2C952E0F1BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoTiled.Utils", "Src/GoTiled.Utils\GoTiled.Utils.csproj", "{B49C8457-3ED1-4D8C-9789-A2C952E0F1BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoTiled.Astar.Tests", "GoTiled.Astar.Tests\GoTiled.Astar.Tests.csproj", "{BB88E475-C5F5-42A8-981D-71F67C2A3690}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoTiled.Astar.Tests", "Tests/GoTiled.Astar.Tests\GoTiled.Astar.Tests.csproj", "{BB88E475-C5F5-42A8-981D-71F67C2A3690}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

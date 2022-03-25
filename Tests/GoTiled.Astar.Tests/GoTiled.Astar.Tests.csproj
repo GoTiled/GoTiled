@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GoTiled.Astar\GoTiled.Astar.csproj" />
+    <ProjectReference Include="..\..\Src\GoTiled.Astar\GoTiled.Astar.csproj" />
   </ItemGroup>
 
 </Project>
