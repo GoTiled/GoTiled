@@ -62,4 +62,9 @@ public static class GTAstar
 
         return null;
     }
+
+    public static List<GTTile>? Calculate(GTPathMap map, int originX, int originY, int destinationX, int destinationY)
+    {
+        return Calculate(map, new GTTile(originX, originY), new GTTile(destinationX, destinationY));
+    }
 }
