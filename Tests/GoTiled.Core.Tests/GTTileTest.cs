@@ -45,7 +45,18 @@ public class GTTileTest
     }
 
     [Fact]
-    public void ObjectComparison()
+    public void ObjectComparisonEquality()
+    {
+        // Arrange
+        object tileA = new GTTile(0, 0);
+        object tileB = new GTTile(0, 0);
+
+        // Assert
+        Assert.True(tileA.Equals(tileB));
+    }
+
+    [Fact]
+    public void ObjectComparisonInequality()
     {
         // Arrange
         object tile = new GTTile(0, 0);
