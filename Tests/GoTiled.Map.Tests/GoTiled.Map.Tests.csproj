@@ -29,7 +29,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Src\GoTiled.Astar\GoTiled.Astar.csproj" />
+	  <ProjectReference Include="..\..\Src\GoTiled.Map\GoTiled.Map.csproj" />
 	</ItemGroup>
 
 </Project>

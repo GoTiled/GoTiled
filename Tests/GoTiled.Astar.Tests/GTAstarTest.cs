@@ -1,5 +1,4 @@
-﻿using System;
-using GoTiled.Core;
+﻿using GoTiled.Core;
 using Xunit;
 
 namespace GoTiled.Astar.Tests;
@@ -18,7 +17,7 @@ public class GTAstarTest
         });
 
         // Act
-        var complete = GTAstar.Calculate(map, new GTTile(0, 0), new GTTile(0, 2), out var path);
+        var complete = GTAstar.Calculate(map, 0, 0, 0, 2, out var path);
 
         // Assert
         Assert.True(complete);
@@ -26,5 +25,24 @@ public class GTAstarTest
         Assert.Equal(new GTTile(0, 0), path[0]);
         Assert.Equal(new GTTile(0, 1), path[1]);
         Assert.Equal(new GTTile(0, 2), path[2]);
+    }
+
+    [Fact]
+    public void BlockedPath()
+    {
+        // Arrange
+        var map = new GTPathMap(new[,]
+        {
+            {true,false,true},
+            {true,false,true},
+            {true,false,true},
+        });
+
+        // Act
+        var complete = GTAstar.Calculate(map, 0, 0, 0, 2, out var path);
+
+        // Assert
+        Assert.False(complete);
+        Assert.Empty(path);
     }
 }
