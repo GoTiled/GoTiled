@@ -27,10 +27,10 @@ public class GTTileTest
     public void TileSanity(int x, int y)
     {
         // Arrange
-        var tile = new GTTile(0, 0);
+        var tile = new GTTile(x, y);
 
         // Assert
-        SanityCheck(tile, 0, 0);
+        SanityCheck(tile, x, y);
     }
 
     [Fact]
