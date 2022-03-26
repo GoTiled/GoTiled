@@ -4,7 +4,7 @@ namespace GoTiled.Astar;
 
 public static class GTAstar
 {
-    private class Node
+    private sealed class Node
     {
         public Node? Parent { get; }
         public GTTile Position { get; }
@@ -21,7 +21,7 @@ public static class GTAstar
         return Math.Abs(origin.X - destination.X) + Math.Abs(origin.Y - destination.Y);
     }
 
-    public static List<GTTile>? Calculate(GTPathMap map, GTTile origin, GTTile destination)
+    public static bool Calculate(GTPathMap map, GTTile origin, GTTile destination, out List<GTTile> path)
     {
         var queue = new PriorityQueue<Node, int>();
         queue.Enqueue(new Node(null, origin), 0);
@@ -47,7 +47,8 @@ public static class GTAstar
 
                     tiles.Reverse();
 
-                    return tiles;
+                    path = tiles;
+                    return true;
                 }
 
                 if (visited.Contains(adj))
@@ -60,11 +61,12 @@ public static class GTAstar
             }
         }
 
-        return null;
+        path = new List<GTTile>();
+        return false;
     }
 
-    public static List<GTTile>? Calculate(GTPathMap map, int originX, int originY, int destinationX, int destinationY)
+    public static bool Calculate(GTPathMap map, int originX, int originY, int destinationX, int destinationY, out List<GTTile> path)
     {
-        return Calculate(map, new GTTile(originX, originY), new GTTile(destinationX, destinationY));
+        return Calculate(map, new GTTile(originX, originY), new GTTile(destinationX, destinationY), out path);
     }
 }

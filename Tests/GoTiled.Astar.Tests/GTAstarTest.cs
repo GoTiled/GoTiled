@@ -18,9 +18,10 @@ public class GTAstarTest
         });
 
         // Act
-        var path = GTAstar.Calculate(map, new GTTile(0, 0), new GTTile(0, 2)) ?? throw new ArgumentException();
+        var complete = GTAstar.Calculate(map, new GTTile(0, 0), new GTTile(0, 2), out var path);
 
         // Assert
+        Assert.True(complete);
         Assert.Equal(3, path.Count);
         Assert.Equal(new GTTile(0, 0), path[0]);
         Assert.Equal(new GTTile(0, 1), path[1]);

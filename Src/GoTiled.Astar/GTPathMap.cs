@@ -7,6 +7,49 @@ public class GTPathMap
 {
     private readonly List<GTTile>[,] _nodes;
 
+    private static void AddDiagonalConnections(bool[,] walkable, List<GTTile> connections, int x, int y)
+    {
+        if (walkable.GetValueOrDefault(x - 1, y - 1, false))
+        {
+            connections.Add(new GTTile(x - 1, y - 1));
+        }
+
+        if (walkable.GetValueOrDefault(x + 1, y - 1, false))
+        {
+            connections.Add(new GTTile(x + 1, y - 1));
+        }
+
+        if (walkable.GetValueOrDefault(x - 1, y + 1, false))
+        {
+            connections.Add(new GTTile(x - 1, y + 1));
+        }
+
+        if (walkable.GetValueOrDefault(x + 1, y + 1, false))
+        {
+            connections.Add(new GTTile(x + 1, y + 1));
+        }
+    }
+
+    private static void AddStraightConnections(bool[,] walkable, List<GTTile> connections, int x, int y)
+    {
+        if (walkable.GetValueOrDefault(x, y - 1, false))
+        {
+            connections.Add(new GTTile(x, y - 1));
+        }
+        if (walkable.GetValueOrDefault(x - 1, y, false))
+        {
+            connections.Add(new GTTile(x - 1, y));
+        }
+        if (walkable.GetValueOrDefault(x + 1, y, false))
+        {
+            connections.Add(new GTTile(x + 1, y));
+        }
+        if (walkable.GetValueOrDefault(x, y + 1, false))
+        {
+            connections.Add(new GTTile(x, y + 1));
+        }
+    }
+
     public GTPathMap(bool[,] walkable) : this(walkable, false)
     { }
 
@@ -25,46 +68,8 @@ public class GTPathMap
                 _nodes[x, y] = connections;
 
                 // Diagonal
-                if (diagonal)
-                {
-                    if (walkable.GetValueOrDefault(x - 1, y - 1, false))
-                    {
-                        connections.Add(new GTTile(x - 1, y - 1));
-                    }
-
-                    if (walkable.GetValueOrDefault(x + 1, y - 1, false))
-                    {
-                        connections.Add(new GTTile(x + 1, y - 1));
-                    }
-
-                    if (walkable.GetValueOrDefault(x - 1, y + 1, false))
-                    {
-                        connections.Add(new GTTile(x - 1, y + 1));
-                    }
-
-                    if (walkable.GetValueOrDefault(x + 1, y + 1, false))
-                    {
-                        connections.Add(new GTTile(x + 1, y + 1));
-                    }
-                }
-
-                // Straight
-                if (walkable.GetValueOrDefault(x, y - 1, false))
-                {
-                    connections.Add(new GTTile(x, y - 1));
-                }
-                if (walkable.GetValueOrDefault(x - 1, y, false))
-                {
-                    connections.Add(new GTTile(x - 1, y));
-                }
-                if (walkable.GetValueOrDefault(x + 1, y, false))
-                {
-                    connections.Add(new GTTile(x + 1, y));
-                }
-                if (walkable.GetValueOrDefault(x, y + 1, false))
-                {
-                    connections.Add(new GTTile(x, y + 1));
-                }
+                if (diagonal) AddDiagonalConnections(walkable, connections, x, y);
+                AddStraightConnections(walkable, connections, x, y);
             }
         }
     }
