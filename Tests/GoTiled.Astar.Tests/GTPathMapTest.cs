@@ -21,6 +21,16 @@ public class GTPathMapTest
     }
 
     [Fact]
+    public void TileMap3X3Empty()
+    {
+        // Arrange
+        var map = new GTPathMap(3, 3);
+
+        // Assert
+        SanityCheck(map, 3, 3);
+    }
+
+    [Fact]
     public void TileMap1X1()
     {
         // Arrange

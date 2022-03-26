@@ -7,7 +7,7 @@ public class GTPathMap
 {
     private readonly List<GTTile>[,] _nodes;
 
-    private static void AddDiagonalConnections(bool[,] walkable, List<GTTile> connections, int x, int y)
+    private static void AddDiagonalConnections(bool[,] walkable, ICollection<GTTile> connections, int x, int y)
     {
         if (walkable.GetValueOrDefault(x - 1, y - 1, false))
         {
@@ -30,7 +30,7 @@ public class GTPathMap
         }
     }
 
-    private static void AddStraightConnections(bool[,] walkable, List<GTTile> connections, int x, int y)
+    private static void AddStraightConnections(bool[,] walkable, ICollection<GTTile> connections, int x, int y)
     {
         if (walkable.GetValueOrDefault(x, y - 1, false))
         {
@@ -47,6 +47,20 @@ public class GTPathMap
         if (walkable.GetValueOrDefault(x, y + 1, false))
         {
             connections.Add(new GTTile(x, y + 1));
+        }
+    }
+
+    public GTPathMap(int sizeX, int sizeY)
+    {
+        _nodes = new List<GTTile>[sizeX, sizeY];
+
+        for (var x = 0; x < sizeX; x++)
+        {
+            for (var y = 0; y < sizeY; y++)
+            {
+                var connections = new List<GTTile>();
+                _nodes[x, y] = connections;
+            }
         }
     }
 
