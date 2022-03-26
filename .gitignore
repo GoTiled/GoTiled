@@ -406,6 +406,10 @@ tools
 .artifacts/
 
 
+# SonarQube
+SonarQube.xml
+
+
 # GoDot
 
 # Godot-specific ignores
