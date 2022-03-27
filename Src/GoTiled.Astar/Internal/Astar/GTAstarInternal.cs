@@ -2,20 +2,8 @@
 
 namespace GoTiled.Astar.Internal.Astar;
 
-internal static class GTWeightedAstarInternal
+internal static class GTAstarInternal
 {
-    private sealed class Node
-    {
-        public Node? Parent { get; }
-        public GTTile Tile { get; }
-
-        public Node(Node? parent, GTTile tile)
-        {
-            Parent = parent;
-            Tile = tile;
-        }
-    }
-
     internal static float DefaultHeuristic(GTTile origin, GTTile destination)
     {
         return Math.Abs(origin.X - destination.X) + Math.Abs(origin.Y - destination.Y);
@@ -23,8 +11,8 @@ internal static class GTWeightedAstarInternal
 
     internal static bool Calculate(GTPathMap map, GTTile origin, GTTile destination, Func<GTTile, GTTile, float> heuristic, out List<GTTile> path)
     {
-        var queue = new PriorityQueue<Node, float>();
-        queue.Enqueue(new Node(null, origin), 0);
+        var queue = new PriorityQueue<IGTAstarNode, float>();
+        queue.Enqueue(new GTAstarNode(null, origin), 0);
 
         var visited = new HashSet<GTTile> { origin };
 
@@ -32,18 +20,7 @@ internal static class GTWeightedAstarInternal
         {
             if (current.Tile == destination)
             {
-                var tiles = new List<GTTile>();
-
-                var node = current;
-                while (node != null)
-                {
-                    tiles.Add(node.Tile);
-                    node = node.Parent;
-                }
-
-                tiles.Reverse();
-
-                path = tiles;
+                path = ToPath(current);
                 return true;
             }
 
@@ -54,12 +31,28 @@ internal static class GTWeightedAstarInternal
                     continue;
                 }
 
-                queue.Enqueue(new Node(current, adj), heuristic(adj, destination));
+                queue.Enqueue(new GTAstarNode(current, adj), heuristic(adj, destination));
                 visited.Add(adj);
             }
         }
 
         path = new List<GTTile>();
         return false;
+    }
+
+    internal static List<GTTile> ToPath(IGTAstarNode lastNode)
+    {
+        var tiles = new List<GTTile>();
+
+        var node = lastNode;
+        while (node != null)
+        {
+            tiles.Add(node.Tile);
+            node = node.Parent;
+        }
+
+        tiles.Reverse();
+
+        return tiles;
     }
 }
