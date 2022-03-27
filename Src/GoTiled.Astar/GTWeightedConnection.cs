@@ -2,12 +2,12 @@
 
 namespace GoTiled.Astar;
 
-public class GTWeightedConnection<TWeight>
+public class GTWeightedConnection
 {
     public GTTile Tile { get; }
-    public TWeight Weight { get; }
+    public float Weight { get; }
 
-    public GTWeightedConnection(GTTile tile, TWeight weight)
+    public GTWeightedConnection(GTTile tile, float weight)
     {
         Tile = tile;
         Weight = weight;
