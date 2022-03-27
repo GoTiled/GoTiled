@@ -1,6 +1,6 @@
 #tool "nuget:?package=NuGet.CommandLine&version=6.0.0"
 
-var semanticVersion = Argument<string>("buildversion");
+var semanticVersion = Argument<string>("buildversion", "0.0.0");
 var version = semanticVersion.Split(new char[] { '-' }).FirstOrDefault() ?? semanticVersion;
 
 Task("Clean")
@@ -50,6 +50,26 @@ Task("Publish")
             ApiKey = apiKey,
             Source = "https://api.nuget.org/v3/index.json"
         });
+    }
+});
+
+Task("List")
+    .IsDependentOn("Build")
+    .Does(context => 
+{
+    // Pack all projects
+    context.DotNetPack($"./GoTiled.sln", new DotNetPackSettings {
+        Configuration = "Release",
+        OutputDirectory = "./.artifacts",
+        NoBuild = true,
+        MSBuildSettings = new DotNetMSBuildSettings()
+            .WithProperty("PackageVersion", semanticVersion)
+    });
+
+    // Publish all projects
+    foreach(var file in GetFiles("./.artifacts/*.nupkg"))
+    {
+        context.Information(file.FullPath);
     }
 });
 
